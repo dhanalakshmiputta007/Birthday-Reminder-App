@@ -2,7 +2,7 @@
   "name": "birthday-reminder-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://birthday-reminder-app-s0yd.onrender.com/Birthday-Reminder-App",
+  "homepage": "https://birthday-reminder-app-s0yd.onrender.com",
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@progress/kendo-react-dateinputs": "^9.1.0",
