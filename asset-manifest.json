@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Birthday-Reminder-App/static/css/main.4b4d1663.css",
-    "main.js": "/Birthday-Reminder-App/static/js/main.be542f45.js",
+    "main.js": "/Birthday-Reminder-App/static/js/main.aba65dca.js",
     "static/js/488.df21b29b.chunk.js": "/Birthday-Reminder-App/static/js/488.df21b29b.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/Birthday-Reminder-App/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/Birthday-Reminder-App/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -10,11 +10,11 @@
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/Birthday-Reminder-App/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "index.html": "/Birthday-Reminder-App/index.html",
     "main.4b4d1663.css.map": "/Birthday-Reminder-App/static/css/main.4b4d1663.css.map",
-    "main.be542f45.js.map": "/Birthday-Reminder-App/static/js/main.be542f45.js.map",
+    "main.aba65dca.js.map": "/Birthday-Reminder-App/static/js/main.aba65dca.js.map",
     "488.df21b29b.chunk.js.map": "/Birthday-Reminder-App/static/js/488.df21b29b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4b4d1663.css",
-    "static/js/main.be542f45.js"
+    "static/js/main.aba65dca.js"
   ]
 }
