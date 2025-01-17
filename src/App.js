@@ -16,6 +16,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/Birthday-Reminder-App" element={<HomePage />} />
           <Route path="/notification/:id" element={<NotificationPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/add-person" element={<AddPerson />} />
