@@ -28,17 +28,17 @@ const HomePage = () => {
     axios.get(`${apiUrl}/api/people`)
       .then(response => {
         setLoader(false);
-        const updatedPeople = response.data.map(person => {
-          const normalizedPath = person.photo.replace(/\\/g, '/');
+        // const updatedPeople = response.data.map(person => {
+        //   const normalizedPath = person.photo.replace(/\\/g, '/');
 
-          const updatedPath = normalizedPath.replace(/^(.*?)(\/uploads)/, `${apiUrl}$2`);
-            return {
-              ...person,
-              photo: updatedPath, // Correct the URL
-            };
+        //   const updatedPath = normalizedPath.replace(/^(.*?)(\/uploads)/, `${apiUrl}$2`);
+        //     return {
+        //       ...person,
+        //       photo: updatedPath, // Correct the URL
+        //     };
           
-        });
-        setPeople(updatedPeople);
+        // });
+        setPeople(response.data);
       })
       .catch(error => {
         setLoader(false);

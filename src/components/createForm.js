@@ -43,10 +43,10 @@ const AddPerson = ({ }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            const uploadedImagePath = response.data.imagePath; // This will be the path like 'uploads/xyz.jpg'
-            const normalizedPath = uploadedImagePath.replace(/\\/g, '/');
-            setFieldValue('photo', `${apiUrl}/${normalizedPath}`)
-            setImage(`${apiUrl}/${normalizedPath}`);
+            // const uploadedImagePath = response.data.imagePath; // This will be the path like 'uploads/xyz.jpg'
+            // const normalizedPath = uploadedImagePath.replace(/\\/g, '/');
+            setFieldValue('photo', response.data.imageUrl)
+            setImage(response.data.imageUrl);
             setMessage('File uploaded successfully!');
         } catch (error) {
             setMessage('Error uploading file');
