@@ -30,6 +30,7 @@ const AddPerson = ({ }) => {
         }
     };
     const handleImageUpload = async (e, setFieldValue) => {
+        debugger
         const file = e.target.files[0];
         if (!file) {
             setMessage('Please select an image first.');
@@ -43,6 +44,7 @@ const AddPerson = ({ }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+            debugger
             // const uploadedImagePath = response.data.imagePath; // This will be the path like 'uploads/xyz.jpg'
             // const normalizedPath = uploadedImagePath.replace(/\\/g, '/');
             setFieldValue('photo', response.data.imageUrl)
