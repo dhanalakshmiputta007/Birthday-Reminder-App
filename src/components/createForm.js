@@ -5,11 +5,12 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import { validationSchema } from '../utils/validationMessages';
+import { isErrorDispaly } from './api';
 
 const AddPerson = ({ }) => {
     const [image, setImage] = useState('');
     const { id } = useParams();
-    const [initialState, setInitialState] = useState({ name: '', photo: '', date: '', })
+    const [initialState, setInitialState] = useState({ name: '', photo: '', date: '',email:"" })
     const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -25,7 +26,7 @@ const AddPerson = ({ }) => {
             setInitialState(response.data);
             setImage(response.data.photo)
         } catch (error) {
-            console.error('Error fetching person data:', error);
+            setMessage(isErrorDispaly(error));
         }
     };
     const handleImageUpload = async (e, setFieldValue) => {
@@ -43,13 +44,11 @@ const AddPerson = ({ }) => {
                 },
             });
             const uploadedImagePath = response.data.imagePath; // This will be the path like 'uploads/xyz.jpg'
-            setFieldValue('photo', `${apiUrl}/${uploadedImagePath}`)
-
-            setImage(`${apiUrl}/${uploadedImagePath}`);
+            const normalizedPath = uploadedImagePath.replace(/\\/g, '/');
+            setFieldValue('photo', `${apiUrl}/${normalizedPath}`)
+            setImage(`${apiUrl}/${normalizedPath}`);
             setMessage('File uploaded successfully!');
-            console.log('Uploaded file:', response.data);
         } catch (error) {
-            console.error('Error uploading file:', error);
             setMessage('Error uploading file');
         }
     };
@@ -59,15 +58,14 @@ const AddPerson = ({ }) => {
 
         axios[method](apiEndpoint, values)
             .then(response => {
-                console.log(id ? 'Person updated:' : 'New person added:', response.data);
-                navigate('/'); // Redirect to homepage or wherever you want
+                navigate('/'); 
+                setMessage(null)
             })
             .catch(error => {
-                console.error('Error submitting form:', error);
+                setMessage(isErrorDispaly(error))
             })
             .finally(() => setSubmitting(false));
     };
-    console.log(initialState, "dhana")
     return (
         <div className="form-container">
             <h2>{id ? 'Edit Person' : 'Add New Person'}</h2>
@@ -87,6 +85,14 @@ const AddPerson = ({ }) => {
                             placeholder="Enter Name"
                         />
                         <ErrorMessage name="name" component="div" className="error-message" />
+                        <label className='lable-name'>Email</label>
+            <Field
+                className='form-input'
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+            />
+            <ErrorMessage name="email" component="div" className="error-message" />
                         <label className='lable-name'>Upload Photo (URL)</label>
                         <input
                             className='form-input'
@@ -95,7 +101,7 @@ const AddPerson = ({ }) => {
                             accept="image/*"
                         />
                         {image && <img src={image} alt="Uploaded Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />}
-                        <ErrorMessage name="photo" component="div" />
+                        <ErrorMessage name="photo" component="div" className="error-message" />
                         <div>
                             <label className='lable-name'>Birthday Date</label>
                             <DatePicker

@@ -28,7 +28,17 @@ const HomePage = () => {
     axios.get(`${apiUrl}/api/people`)
       .then(response => {
         setLoader(false);
-        setPeople(response.data);
+        const updatedPeople = response.data.map(person => {
+          const normalizedPath = person.photo.replace(/\\/g, '/');
+
+          const updatedPath = normalizedPath.replace(/^(.*?)(\/uploads)/, `${apiUrl}$2`);
+            return {
+              ...person,
+              photo: updatedPath, // Correct the URL
+            };
+          
+        });
+        setPeople(updatedPeople);
       })
       .catch(error => {
         setLoader(false);
@@ -77,21 +87,7 @@ const HomePage = () => {
 
       <div className="people-list">
        { errorMessage&&<ErrorComponent errorMessage={errorMessage} clearMessage={clearMessage}/>}
-        {/* {!loader && people.map(person => (
-          <div key={person._id} className="person-card">
-            <i class="fa-solid fa-pen-to-square" onClick={() => handleEdit(person._id)} ></i>
-            <i className="fa-solid fa-trash"
-              onClick={() => openModal(person._id)}
-            ></i>
-
-            <img src={person.photo} alt={person.name} />
-            <h3>
-            {formatDate(person.date)}
-            </h3>
-            <h3>{person.name}</h3>
-            <Link to={`/notification/${person._id}`}>View Birthday Reminder</Link>
-          </div>
-        ))} */}
+       
         {!loader && people.map(person => (
   <div key={person._id} className="person-card">
     <div className="person-info">
