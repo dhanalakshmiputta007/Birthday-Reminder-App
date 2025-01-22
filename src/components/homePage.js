@@ -28,16 +28,6 @@ const HomePage = () => {
     axios.get(`${apiUrl}/api/people`)
       .then(response => {
         setLoader(false);
-        // const updatedPeople = response.data.map(person => {
-        //   const normalizedPath = person.photo.replace(/\\/g, '/');
-
-        //   const updatedPath = normalizedPath.replace(/^(.*?)(\/uploads)/, `${apiUrl}$2`);
-        //     return {
-        //       ...person,
-        //       photo: updatedPath, // Correct the URL
-        //     };
-          
-        // });
         setPeople(response.data);
       })
       .catch(error => {
@@ -86,7 +76,7 @@ const HomePage = () => {
       <button type="submit" disabled={false} className='button' onClick={handleButton}>Go To Create Person</button>
 
       <div className="people-list">
-       { errorMessage&&<ErrorComponent errorMessage={errorMessage} clearMessage={clearMessage}/>}
+       {!loader&& errorMessage&&<ErrorComponent errorMessage={errorMessage} clearMessage={clearMessage}/>}
        
         {!loader && people.map(person => (
   <div key={person._id} className="person-card">
@@ -108,7 +98,7 @@ const HomePage = () => {
             <i className="fa-solid fa-spinner loader"></i>
           </div>
         )}
-        {people.length <= 0 && <NoDataFound />}
+        {!loader &&!errorMessage&&people.length <= 0 && <NoDataFound />}
       </div>
       {personToDelete && showModal &&
         <DeleteModal show={showModal}

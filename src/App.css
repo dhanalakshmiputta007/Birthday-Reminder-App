@@ -15,7 +15,7 @@ h2 {
 }
 /* src/Header.css */
 .header {
-  background-color: #333;
+  background-color: #9364c2;
   color: #fff;
   padding: 15px 0;
   display: flex;
@@ -46,6 +46,11 @@ h2 {
 
 .header nav ul li a:hover {
   text-decoration: underline;
+}
+.header .fa-bell {
+  font-size: 1.5rem;
+  color: hsl(0, 20%, 96%);
+  cursor: pointer;
 }
 
 
@@ -155,20 +160,38 @@ button:disabled {
   align-items: center;
   border-radius: 5px;
 }
+.error-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 
+.error-data-box {
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da; /* Light red background for error */
+  color: #721c24; /* Dark red text */
+  padding: 10px 15px;
+  border: 1px solid #f5c6cb; /* Border matching the error theme */
+  border-radius: 5px;
+  width: 100%; /* Adjust as needed */
+  max-width: 400px;
+}
 .error-text {
-  margin-left: 30px;
-  font-weight: bold;
+  margin: 0;
+  flex: 1; /* Take the remaining space for text */
+  font-size: 14px; /* Adjust text size */
+}
+.error-icon {
+  margin-right: 10px; /* Add spacing between icon and text */
+  cursor: pointer; /* Make the icon clickable */
+  font-size: 18px; /* Adjust icon size */
+  color: #721c24; /* Match text color */
 }
 
-.close-icon {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  font-size: 20px;
-  cursor: pointer;
-  color: red;
-}
+
+
 /* Loader Styles */
 .loader-container {
   display: flex;
@@ -280,8 +303,3 @@ button:disabled {
 .person-card:hover .person-date {
   background-color: #0056b3; /* Optional: Change color on hover */
 }
-
-
-
-
-

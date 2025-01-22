@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ParagraphComponent from './ParagraphComponent';
 
 const ErrorComponent = ({errorMessage, clearMessage}) => {
   const [error, setError] = useState(errorMessage);
@@ -15,13 +16,17 @@ const ErrorComponent = ({errorMessage, clearMessage}) => {
   };
 
   return (
-    <div className="no-data-container">
-      <div className="no-data-box">
-        <span className="close-icon" onClick={clearError}>&#10005;</span>
-        <p className="error-text">{errorMessage}</p>
-      </div>
-    </div>
-  );
-};
+    <div className="error-data-container">
+  <div className="error-data-box">
+    <span className="error-icon" onClick={clearError}>
+      <i className="fa-solid fa-xmark"></i>
+    </span>
+    <p className="error-text">{errorMessage}</p>
+  </div>
+</div>
 
+  );
+    
+  
+};
 export default ErrorComponent;

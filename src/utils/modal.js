@@ -9,10 +9,14 @@ const Modal = ({ show, onClose, onConfirm, message,clearMessage ,errorMessage}) 
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
+     <div className="modal">
+        <div className="modal-header">
+          <i className="fas fa-arrow-left back-arrow" onClick={onClose}></i>
+          <i className="fas fa-times close-icon" onClick={onClose}></i>
+        </div>
       {errorMessage && <ErrorComponent errorMessage={errorMessage} clearMessage={clearMessage}/>}
 
-        <h3>{message}</h3>
+        <span className='message'>{message}</span>
         <div className="modal-actions">
           <button onClick={onClose} className="cancel-button">Cancel</button>
           <button onClick={onConfirm} className="confirm-button">Confirm</button>
