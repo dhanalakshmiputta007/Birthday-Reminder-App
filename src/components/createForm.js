@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import { DatePicker } from '@progress/kendo-react-dateinputs';
+import '@progress/kendo-theme-default/dist/all.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { validationSchema } from '../utils/validationMessages';
 import { isErrorDispaly } from './api';
@@ -10,7 +10,7 @@ import { isErrorDispaly } from './api';
 const AddPerson = ({ }) => {
     const [image, setImage] = useState('');
     const { id } = useParams();
-    const [initialState, setInitialState] = useState({ name: '', photo: '', date: '',email:"" })
+    const [initialState, setInitialState] = useState({ name: '', photo: '', date: null,email:"" })
     const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -102,12 +102,18 @@ const AddPerson = ({ }) => {
                         <ErrorMessage name="photo" component="div" className="error-message" />
                         <div>
                             <label className='lable-name'>Birthday Date</label>
-                            <DatePicker
+                            {/* <DatePicker
                                 selected={values.date ? new Date(values.date) : null}
                                 onChange={(date) => setFieldValue('date', date)}
                                 dateFormat="dd/MM/yyyy"
                                 placeholderText="Select Birthday"
                                 required
+                            /> */}
+                            <DatePicker
+                                value={values.date ? new Date(values.date) : null} // Use value instead of selected
+                                onChange={(event) => setFieldValue('date', event?.value)} // event.value gives the selected date
+                                format="dd/MM/yyyy" // Date format
+                                placeholder="Select Birthday"
                             />
                             <ErrorMessage name="date" component="div" className="error-message" />
                         </div>
