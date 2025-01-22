@@ -10,7 +10,7 @@ import { isErrorDispaly } from './api';
 const AddPerson = ({ }) => {
     const [image, setImage] = useState('');
     const { id } = useParams();
-    const [initialState, setInitialState] = useState({ name: '', photo: '', date: null,email:"" })
+    const [initialState, setInitialState] = useState({ name: '', photo: '', date: null, email: "" })
     const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -56,7 +56,7 @@ const AddPerson = ({ }) => {
 
         axios[method](apiEndpoint, values)
             .then(response => {
-                navigate('/'); 
+                navigate('/');
                 setMessage(null)
             })
             .catch(error => {
@@ -84,13 +84,22 @@ const AddPerson = ({ }) => {
                         />
                         <ErrorMessage name="name" component="div" className="error-message" />
                         <label className='lable-name'>Email</label>
-            <Field
-                className='form-input'
-                type="email"
-                name="email"
-                placeholder="Enter Email"
-            />
-            <ErrorMessage name="email" component="div" className="error-message" />
+                        <Field
+                            className='form-input'
+                            type="email"
+                            name="email"
+                            placeholder="Enter Email"
+                        />
+                        <ErrorMessage name="email" component="div" className="error-message" />
+                        <label className="lable-name">Mobile Number</label>
+                        <Field
+                            className="form-input"
+                            type="tel"
+                            name="phoneNumber"
+                            placeholder="Enter Mobile Number"
+                        />
+                        <ErrorMessage name="phoneNumber" component="div" className="error-message" />
+
                         <label className='lable-name'>Upload Photo (URL)</label>
                         <input
                             className='form-input'
@@ -102,13 +111,7 @@ const AddPerson = ({ }) => {
                         <ErrorMessage name="photo" component="div" className="error-message" />
                         <div>
                             <label className='lable-name'>Birthday Date</label>
-                            {/* <DatePicker
-                                selected={values.date ? new Date(values.date) : null}
-                                onChange={(date) => setFieldValue('date', date)}
-                                dateFormat="dd/MM/yyyy"
-                                placeholderText="Select Birthday"
-                                required
-                            /> */}
+
                             <DatePicker
                                 value={values.date ? new Date(values.date) : null} // Use value instead of selected
                                 onChange={(event) => setFieldValue('date', event?.value)} // event.value gives the selected date
