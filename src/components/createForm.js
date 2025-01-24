@@ -64,6 +64,9 @@ const AddPerson = ({ }) => {
             })
             .finally(() => setSubmitting(false));
     };
+    const onClose=()=>{
+        navigate('/');
+    }
     return (
         <div className="form-container">
             <h2>{id ? 'Edit Person' : 'Add New Person'}</h2>
@@ -120,10 +123,14 @@ const AddPerson = ({ }) => {
                             />
                             <ErrorMessage name="date" component="div" className="error-message" />
                         </div>
-
-                        <button type="submit" disabled={isSubmitting} className="button">
+                        <div className="modal-actions">
+          <button onClick={onClose} className="cancel-button">Cancel</button>
+          <button type="submit" disabled={isSubmitting} className="button">
                             {id ? 'Update Person' : 'Add Person'}
-                        </button>          </Form>
+                        </button>  
+        </div>
+
+                               </Form>
                 )}
             </Formik>
         </div>
