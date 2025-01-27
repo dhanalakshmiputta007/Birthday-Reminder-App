@@ -18,14 +18,14 @@ const Header = () => {
           <li>
             <Link to="/">Home</Link> {/* Link to Home page */}
           </li>
-          <li>
-            <Link to="/contact">Contact Us</Link> {/* Link to Contact Us page */}
+          {/* <li>
+            <Link to="/contact">Contact Us</Link>
           </li>
           <li>
-            {/* <button onClick={handleNotificationClick}> */}
+            <button onClick={handleNotificationClick}>
               <i className="fas fa-bell"></i>
-            {/* </button> */}
-          </li>
+            </button> */}
+          {/* </li> */}
         </ul>
       </nav>
     </header>
