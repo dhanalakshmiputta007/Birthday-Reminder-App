@@ -80,7 +80,7 @@ const AddPerson = ({ }) => {
           </div>
         )}
           
-           {id&&!loader&&<> <h2>{id ? 'Edit Person' : 'Add New Person'}</h2>
+           {!loader&&<> <h2>{id ? 'Edit Person' : 'Add New Person'}</h2>
 
             <Formik
                 initialValues={initialState}

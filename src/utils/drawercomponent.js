@@ -4,7 +4,7 @@ import "./drawer.css";
 import ErrorComponent from "./errorcomponet";
 import { formatDate } from "../components/dateformate";
 
-const DrawerPlacement = ({ openDrawer, closeDrawer,loader,data,errorMessage,clearMessage }) => {
+const DrawerPlacement = ({ openDrawer, closeDrawer,loader,data,errorMessage,clearMessage,title }) => {
     
   return (
     <div
@@ -14,7 +14,10 @@ const DrawerPlacement = ({ openDrawer, closeDrawer,loader,data,errorMessage,clea
     >
       <div className="Drawer__Header">
         <i className="fas fa-arrow-left back-arrow" onClick={closeDrawer}></i>
+        <span className="Drawer__Title">{title}</span>
+
         <i className="fas fa-times close-icon" onClick={closeDrawer}></i>
+
       </div>
 
       <div className="Drawer__Content">
@@ -45,7 +48,7 @@ const DrawerPlacement = ({ openDrawer, closeDrawer,loader,data,errorMessage,clea
     </div>
     <div className="Drawer__DetailRow">
       <span className="Drawer__DetailLabel">Date</span>
-      <span className="Drawer__DetailValue">{formatDate(data?.date)}</span>
+      <span className="Drawer__DetailValue">{data?.date?formatDate(data?.date):"--"}</span>
     </div>
   </div>}
       </div>

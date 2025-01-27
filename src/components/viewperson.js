@@ -34,7 +34,7 @@ const clearMessage=()=>{
   return (
     <div>
         <div>
-        <DrawerPlacement  openDrawer={openDrawer} closeDrawer={closeDrawer} data={person} loader={loader} errorMessage={errorMessage} clearMessage={clearMessage}/>
+        <DrawerPlacement  openDrawer={openDrawer} closeDrawer={closeDrawer} data={person} loader={loader} errorMessage={errorMessage} clearMessage={clearMessage} title={"View Person"}/>
           
         </div>
       

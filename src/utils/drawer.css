@@ -14,9 +14,15 @@
   .Drawer__Container--isOpen {
     transform: translateX(-300px); /* Slide into view */
   }
+  .back-arrow {
+    font-size: 1.5rem;
+    color: #e0e0e0;
+    cursor: pointer;
+    position: absolute;
+margin-left: 0px;  }
   .close-icon {
     font-size: 1.5rem;
-    color: #333 !important;
+    color: #e0e0e0 !important;
     cursor: pointer;
     position: absolute;
     margin-top: -5px;
@@ -99,6 +105,14 @@
   .Drawer__DetailValue {
     font-weight: normal;
     color: #666;
+  }
+  .Drawer__Title {
+    font-size: 1.25rem; /* Larger font for the title */
+    font-weight: bold;
+    color: #e0e0e0;
+    position: absolute; /* Center the title */
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   
