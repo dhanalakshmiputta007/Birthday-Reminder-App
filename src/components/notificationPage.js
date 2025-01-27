@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { formatDate } from './dateformate';
+import DrawerPlacement from '../utils/drawercomponent';
 
 const NotificationPage = () => {
   const { id } = useParams();
@@ -35,9 +37,11 @@ const NotificationPage = () => {
     <div>
       {person ? (
         <div>
-          <h2>{person.name}'s Birthday</h2>
+          {/* <h2>{person.name}'s Birthday</h2>
           <p>Birthday: {person.date}</p>
-          <img src={person.photo} alt={person.name} />
+              <div ><span>Birthday:</span>{formatDate(person.date)}</div>
+          <img src={person.photo} alt={person.name} /> */}
+          <DrawerPlacement data={person}/>
         </div>
       ) : (
         <p>Loading...</p>

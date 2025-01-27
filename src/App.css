@@ -127,7 +127,8 @@ button {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  width: 100%;
+  /* width: 100%; */
+  margin-left: 60px;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -302,4 +303,20 @@ button:disabled {
 
 .person-card:hover .person-date {
   background-color: #0056b3; /* Optional: Change color on hover */
+}
+.view-person{
+    position: absolute; /* Absolute positioning to place it relative to the card */
+    bottom: 5px; /* Adjust distance below the image */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #007bff; 
+    color: #fff; /* Text color */
+    padding: 5px 5px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    white-space: nowrap; /* Prevents the text from wrapping */
+    cursor: pointer;
+  
 }

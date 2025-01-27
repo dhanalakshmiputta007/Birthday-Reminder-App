@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import NoDataFound from '../utils/nodatafound';
 import DeleteModal from '../utils/modal';
-import reducer from '../reducer/birthdayReminderReducer'
 import ErrorComponent from '../utils/errorcomponet';
 import { isErrorDispaly } from './api';
 import { formatDate } from './dateformate';
+import ViewPerson from './viewperson';
+import DrawerPlacement from '../utils/drawercomponent';
 
 
 const HomePage = () => {
@@ -16,13 +17,21 @@ const HomePage = () => {
   const [personToDelete, setPersonToDelete] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [deleteErrorMessage, setDeleteErrorMessage] = useState(null);
-
   const [loader, setLoader] = useState(false);
+  const [openRight, setOpenRight] = React.useState(false);
+  const [id,setId]=useState('')
+ 
   const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     getPersons();
   }, []);
-
+  const openDrawerRight = (person) =>  {
+    setId(person._id)
+    setOpenRight(true);
+    }
+  const closeDrawerRight = () => {
+    setOpenRight(false);
+  }
   const getPersons = () => {
     setLoader(true);
     axios.get(`${apiUrl}/api/people`)
@@ -86,10 +95,11 @@ const HomePage = () => {
         <i className="fa-solid fa-pen-to-square" title="Edit Person" onClick={() => handleEdit(person._id)}></i>
         <i className="fa-solid fa-trash" title="Delete Person" onClick={() => openModal(person._id)}></i>
       </div>
+     
     </div>
     <img src={person.photo} alt={person.name} />
     <div className='person-date'>{formatDate(person.date)}</div>
-    <Link to={`/notification/${person._id}`}>View Birthday Reminder</Link>
+    <div className='view-person'> <span onClick={()=>openDrawerRight(person)} >View Birthday Reminder</span></div>
   </div>
 ))}
 
@@ -100,6 +110,7 @@ const HomePage = () => {
         )}
         {!loader &&!errorMessage&&people.length <= 0 && <NoDataFound />}
       </div>
+      {openRight&&<ViewPerson  openDrawer={openRight} closeDrawer={closeDrawerRight} id={id}/>}
       {personToDelete && showModal &&
         <DeleteModal show={showModal}
           onClose={closeModal}

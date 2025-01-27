@@ -13,6 +13,7 @@ const AddPerson = ({ }) => {
     const [initialState, setInitialState] = useState({ name: '', photo: '', date: null, email: "" })
     const navigate = useNavigate();
     const apiUrl = process.env.REACT_APP_API_URL;
+  const [loader, setLoader] = useState(false);
 
     const [message, setMessage] = useState(''); // Display success or error messages
     useEffect(() => {
@@ -21,11 +22,14 @@ const AddPerson = ({ }) => {
         }
     }, [])
     const getPersonById = async (id) => {
+        setLoader(true);
         try {
             const response = await axios.get(`${apiUrl}/api/people/${id}`);
             setInitialState(response.data);
             setImage(response.data.photo)
+            setLoader(false);
         } catch (error) {
+            setLoader(false);
             setMessage(isErrorDispaly(error));
         }
     };
@@ -69,7 +73,14 @@ const AddPerson = ({ }) => {
     }
     return (
         <div className="form-container">
-            <h2>{id ? 'Edit Person' : 'Add New Person'}</h2>
+            <div>
+            {id&&loader && (
+          <div className="loader-container">
+            <i className="fa-solid fa-spinner loader"></i>
+          </div>
+        )}
+          
+           {id&&!loader&&<> <h2>{id ? 'Edit Person' : 'Add New Person'}</h2>
 
             <Formik
                 initialValues={initialState}
@@ -132,7 +143,8 @@ const AddPerson = ({ }) => {
 
                                </Form>
                 )}
-            </Formik>
+            </Formik></>}
+            </div>
         </div>
     );
 };
